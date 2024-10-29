@@ -1,0 +1,37 @@
+<template>
+    <!-- Conditional Rendering -->
+    <template lwc:if={isReady}>
+        <p>Status: The system is ready!</p>
+    </template>
+
+    <template lwc:elseif={isLoading}>
+        <p>Status: The system is loading...</p>
+    </template>
+
+    <template lwc:else>
+        <p>Status: An error occurred!</p>
+    </template>
+
+    <!-- Buttons to change status -->
+    <lightning-button label="Set Ready" data-status="ready" onclick={setStatus}></lightning-button>
+    <lightning-button label="Set Loading" data-status="loading" onclick={setStatus}></lightning-button>
+    <lightning-button label="Set Error" data-status="error" onclick={setStatus}></lightning-button>
+
+    <lightning-card title="lwc:if and lwc:else Getter demo">
+        <div class="slds-var-p-around_medium">
+            <lightning-input
+             label="Country Name"
+             value={newCountry}
+             onchange={changeHandler}></lightning-input>
+             <template lwc:if={isCountryAustralia}>
+                Yes, it's Australia
+             </template>
+             <template lwc:elseif={isCountryCanada}>
+                Yes, it's Canada
+             </template>
+             <template lwc:else>
+                Neither Australia nor Canada
+             </template>
+        </div>
+    </lightning-card>
+</template>

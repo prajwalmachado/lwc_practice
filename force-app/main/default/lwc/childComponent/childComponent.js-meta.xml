@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="grandparentComponent">
+    <apiVersion>58.0</apiVersion> <!-- Adjust based on the Salesforce API version -->
+    <isExposed>true</isExposed>  <!-- Expose the component to make it available in the org -->
+    
+    <!-- Targets define where this component can be used -->
+    <targets>
+        <target>lightning__AppPage</target>  <!-- App Page -->
+        <target>lightning__RecordPage</target>  <!-- Record Page -->
+        <target>lightning__HomePage</target>  <!-- Home Page -->
+    </targets>
+
+</LightningComponentBundle>
+
+      
+

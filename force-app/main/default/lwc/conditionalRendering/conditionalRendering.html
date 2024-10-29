@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="conditional rendering">
+        <div class="slds-var-m-around_medium">
+            <lightning-button 
+                variant="brand-outline" 
+                label="Click here!!" 
+                title="Primary action with lighter look" 
+                onclick={handleClick} 
+                class="slds-m-left_x-small">
+            </lightning-button>
+            <template if:true={isVisible}>
+                <span>LWC Conditional Rendering test</span>
+            </template>
+
+            <template if:false={isVisible}>
+                <div>
+                    See this whilst its empty.
+                </div>
+            </template>
+            <lightning-input type="text" 
+                label="Type to see data" 
+                onkeyup={changeHandler}>
+            </lightning-input>
+            <template if:true={inputHello}>
+                <div>Ecstacy</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

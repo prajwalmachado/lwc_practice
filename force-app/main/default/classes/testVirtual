@@ -1,0 +1,45 @@
+public abstract class Row{
+    public virtual double value{
+        get{return value==null ? 0 : value;}
+        set;
+    }
+}
+
+public class SummaryRow extends Row{
+    private list<Row> childRows;
+    public override double value{
+        get{
+            totalValue = 0;
+            for(Row childRow:childRows){
+                totalvalue += childRow.value;
+            }
+            return totalValue;
+        }
+    }
+}
+
+
+public abstract class TestRow {
+    public Double value;
+
+    public virtual Double getValue() {
+        return value==null ? 0 : value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
+}
+
+public class SummaryTestRow extends TestRow {
+    private list<TestRow> childRows;
+
+    public override Double getValue() {
+        Double totalValue = 0;
+        for(TestRow childRow : childRows){
+            totalValue += childRow.value;
+        }
+
+        return totalValue;  
+    }
+}

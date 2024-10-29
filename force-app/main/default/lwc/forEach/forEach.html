@@ -1,0 +1,58 @@
+<!-- helloForEach.html -->
+<template>
+    <lightning-card title="ForEach" icon-name="custom:custom14">
+      <div class="slds-m-around_medium">
+        <template for:each={contacts} for:item="contact">
+
+            <ul  key={contact.Id} class="slds-has-dividers_around-space">
+                <li class="slds-item">{contact.Name}</li>
+            </ul>
+          
+        </template>
+    </div>
+    </lightning-card>
+
+    <!-- <lightning-button 
+      variant="base"
+      label="Button Label" 
+      title="Looks like a link" 
+      value="" 
+      type="button"
+      onclick={handleClick} 
+      stretch="false" 
+      icon-name="utility:activity"
+      icon-position="left"
+      class="slds-var-m-around_medium"
+    ></lightning-button> -->
+
+    <lightning-card title="iterator loop">
+        <div class="slds-var-m-around_medium">
+            <template iterator:ceo={ceoList}>
+                <div key={ceo.value.id}>
+                    <ul class="slds-has-dividers_around-space">
+                        <template if:true={ceo.first}>
+                            <div class="slds-box slds-theme_shade">
+                                <strong>
+                                    List of top companies and there CEO's
+                                </strong>
+                            </div>
+                        </template>
+                        
+                        <li class="slds-item">
+                            <strong>{ceo.value.company} </strong>
+                            {ceo.value.name}
+                        </li>
+
+                        <template if:true={ceo.last}>
+                            <div class="slds-box slds-theme_shade">
+                                <strong>
+                                    Thanks for reading the list
+                                </strong>
+                            </div>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+  </template>

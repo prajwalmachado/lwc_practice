@@ -1,0 +1,8 @@
+When you have deeply nested components, communication can become complex. 
+Here’s how to handle communication efficiently:
+
+Scenario: Child -> Parent -> Grandparent
+If a deeply nested child needs to send data back to the grandparent component, 
+it can still follow the custom event approach, but with some additional steps.
+
+Example: Grandparent, Parent, and Child Communication
