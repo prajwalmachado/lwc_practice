@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Order Details Table" icon-name="standard:orders">
+        <!-- Error Message -->
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-m-bottom_medium">{error}</div>
+        </template>
+
+        <!-- Datatable -->
+        <template if:true={data}>
+            <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+
+        <!-- Loading Spinner -->
+        <template if:false={data}>
+            <lightning-spinner alternative-text="Loading order details..."></lightning-spinner>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,57 @@
+import { LightningElement, track, api } from 'lwc';
+import getOrderDetailsByContactId from '@salesforce/apex/OrderDetailsController.getOrderDetailsByContactId';
+
+export default class OrderDetailsTable extends LightningElement {
+    @api recordId; // Automatically gets the Contact ID when on the Contact record page
+    @track data = [];
+    @track error = '';
+
+    columns = [
+        { label: 'Subscription Key', fieldName: 'subscriptionKey', type: 'text' },
+        { label: 'Order IDs', fieldName: 'orderIds', type: 'text' },
+        { label: 'Product', fieldName: 'product', type: 'text' },
+        { label: 'Product Name', fieldName: 'productName', type: 'text' },
+        {
+            label: 'Subscription Amount',
+            fieldName: 'subscriptionAmount',
+            type: 'currency',
+            typeAttributes: { currencyCode: 'USD' }
+        },
+        {
+            label: 'Total Amount',
+            fieldName: 'totalAmount',
+            type: 'currency',
+            typeAttributes: { currencyCode: 'USD' }
+        }
+    ];
+
+    // Fetch order details when the component is initialized
+    connectedCallback() {
+        this.fetchOrderDetails();
+    }
+
+    // Fetch order details from Apex using the Contact ID
+    fetchOrderDetails() {
+        if (!this.recordId) {
+            this.error = 'Contact ID is not available.';
+            return;
+        }
+
+        getOrderDetailsByContactId({ contactId: this.recordId })
+            .then((result) => {
+                if (result && result.length > 0) {
+                    this.data = result.map((record) => ({
+                        ...record,
+                        orderIds: record.orderIds.join(', ') // Join order IDs into a single string
+                    }));
+                    this.error = '';
+                } else {
+                    this.error = 'No order details found for this Contact ID.';
+                }
+            })
+            .catch((error) => {
+                this.error = error.body ? error.body.message : 'An unexpected error occurred.';
+                this.data = [];
+            });
+    }
+}
