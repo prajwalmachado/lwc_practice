@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+		<target>lightning__RecordAction</target>
+	</targets>
+    <targetConfigs>
+        <!-- <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target> -->
+        <targetConfig targets="lightning__RecordAction">
+            <actionType>Action</actionType>
+            <objects>
+                <object>Lead</object> <!-- Ensure this is set to Lead -->
+            </objects>
+        </targetConfig>
+    </targetConfigs>
+
+</LightningComponentBundle>
