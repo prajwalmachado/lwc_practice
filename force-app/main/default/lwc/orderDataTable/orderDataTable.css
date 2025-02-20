@@ -1,0 +1,11 @@
+/* Center the card content */
+.slds-m-around_medium {
+    margin: 1rem;
+}
+
+/* Truncate long text in datatable */
+.slds-truncate {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
