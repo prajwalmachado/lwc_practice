@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Invoice Tree" icon-name="standard:account">
+        <template if:true={invoices}>
+            <ul class="invoice-list">
+                <template for:each={invoices} for:item="invoice">
+                    <li key={invoice.Id} class="invoice-item">
+                        <!-- Toggle Invoice Expand/Collapse -->
+                        <div
+                            class="invoice-header"
+                            data-id={invoice.Id}
+                            onclick={toggleInvoice}
+                        >
+                            <lightning-icon
+                                icon-name={invoice.isExpanded}
+                                alternative-text="Toggle"
+                                class="icon"
+                            ></lightning-icon>
+                            <span class="invoice-name">{invoice.Name}</span>
+                        </div>
+
+                        <!-- Show Line Items if Expanded -->
+                        <template if:true={invoice.isExpanded}>
+                            <ul class="line-items-list">
+                                <template for:each={invoice.lineItems} for:item="lineItem">
+                                    <li key={lineItem.Id} class="line-item">
+                                        {lineItem.Name}
+                                    </li>
+                                </template>
+                            </ul>
+                            <template if:true={invoice.canLoadMore}>
+                                <button
+                                    class="view-more-btn"
+                                    data-id={invoice.Id}
+                                    onclick={loadMore}
+                                >
+                                    View More
+                                </button>
+                            </template>
+                        </template>
+                    </li>
+                </template>
+            </ul>
+        </template>
+        <template if:false={invoices}>
+            <p class="no-data">No invoices available.</p>
+        </template>
+    </lightning-card>
+</template>
