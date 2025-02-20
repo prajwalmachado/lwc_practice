@@ -16,7 +16,6 @@ trigger UpdateHighestAmount on Opportunity (after insert, after update, after de
         }
     }
 
-    // Step 2: Query all related Opportunities for the affected Accounts
     Map<Id, Decimal> accountToHighestAmountMap = new Map<Id, Decimal>();
     if (!accountIds.isEmpty()) {
         for (AggregateResult result : [
@@ -29,7 +28,6 @@ trigger UpdateHighestAmount on Opportunity (after insert, after update, after de
         }
     }
 
-    // Step 3: Update the Accounts with the highest opportunity amount
     List<Account> accountsToUpdate = new List<Account>();
     for (Id accountId : accountIds) {
         Decimal highestAmount = accountToHighestAmountMap.containsKey(accountId) ? accountToHighestAmountMap.get(accountId) : 0;
